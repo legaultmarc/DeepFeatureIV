@@ -6,6 +6,7 @@ from torch.nn import functional as F
 from torch.nn.utils import spectral_norm
 
 from .nn_structure_for_demand import build_net_for_demand
+from .nn_structure_for_mr import build_net_for_mr
 from .nn_structure_for_demand_old import build_net_for_demand_old
 from .nn_structure_for_demand_image import build_net_for_demand_image
 from .nn_structure_for_dsprite import build_net_for_dsprite
@@ -19,6 +20,9 @@ def build_extractor(data_name: str) -> Tuple[nn.Module, nn.Module, Optional[nn.M
     if data_name == "demand":
         logger.info("build without image")
         return build_net_for_demand()
+    if data_name == "mr":
+        logger.info("build MR")
+        return build_net_for_mr()
     elif data_name == "demand_image":
         logger.info("build with image")
         return build_net_for_demand_image()
